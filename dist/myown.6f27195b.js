@@ -4392,6 +4392,27 @@ var ballXY = (0, _popmotion.value)({
     stiffness: 200
   }).start(ballXY);
 });
+var slider = document.querySelector('.carousel');
+var sliderdDivStyler = (0, _popmotion.styler)(slider);
+var sliderX = (0, _popmotion.value)(0, sliderdDivStyler.set('x'));
+(0, _popmotion.listen)(slider, 'mousedown touchstart').start(function () {
+  (0, _popmotion.pointer)({
+    x: sliderX.get()
+  }).pipe(function (_ref) {
+    var x = _ref.x;
+    return x;
+  }).start(sliderX);
+});
+(0, _popmotion.listen)(document, 'mouseup touchend').start(function () {
+  (0, _popmotion.decay)({
+    from: sliderX.get(),
+    velocity: sliderX.getVelocity() // power: 0.8,
+    // timeConstant: 350,
+    // restDelta: 0.5,
+    // modifyTarget: v => v
+
+  }).start(sliderX);
+});
 },{"popmotion":"node_modules/popmotion/dist/popmotion.es.js"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -4419,7 +4440,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54006" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52742" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
